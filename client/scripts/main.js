@@ -3,21 +3,10 @@ let b = { 'priority': 2, 'rtime': 0, 'exseq': "EE" }
 let c = { 'priority': 3, 'rtime': 0, 'exseq': "EVVE" }
 let d = { 'priority': 4, 'rtime': 0, 'exseq': "EVQVE" }
 
-let t = [];
-const COLOR = {
-  ROUGE: "#FF0000",
-  NOIR: "#222222",
-  VERTISH: "#00DD00",
-  VERT: "#54ffba",
-  JAUNE: "#fff654",
-  BLANCHE: "#FFFFFF"
-}
+// La liste des taches
+let taksList = [];
 
-const RESCOLOS = {
-  "E": COLOR.VERT,
-  "Q": COLOR.JAUNE,
-  "V": COLOR.VERTISH
-}
+
 
 let inUsedRes = [];
 let instant = 0;
@@ -34,19 +23,16 @@ function compare(a, b) {
 
 let newBtn;
 
-// objs.sort(compare);
 function setup() {
-  // input = createInput();
-  // input.position(20, 65);
 
   newBtn = createButton('Nouveau');
   createCanvas(600, 450);
-  t.push(new Task("d", 4, "EEQVE", 0, Hauteur / 4, 4))
-  t.push(new Task("c", 3, "EVVE", 0, 2 * Hauteur / 4, 2))
-  t.push(new Task("b", 2, "EE", 0, 3 * Hauteur / 4, 2))
-  t.push(new Task("a", 1, "EQQQQE", 0, Hauteur - 1, 0))
+  taksList.push(new Task("d", 4, "EEQVE", 0, Hauteur / 4, 4))
+  taksList.push(new Task("c", 3, "EVVE", 0, 2 * Hauteur / 4, 2))
+  taksList.push(new Task("b", 2, "EE", 0, 3 * Hauteur / 4, 2))
+  taksList.push(new Task("a", 1, "EQQQQE", 0, Hauteur - 1, 0))
 
-  t.sort(compare)
+  taksList.sort(compare)
 }
 
 function draw() {
@@ -65,21 +51,19 @@ function _drawFunc(){
     const inst = listeIns[i];
     inst.showName(20)
   }
-  showTasks(t)
-  t = getNextTask(t)
-  fill(0)
+  showTasks(taksList)
+  taksList = defaultScheduler(taksList)
 
 }
 
-function getNextTask(tasks) {
+function defaultScheduler(tasks) {
   let newTasks = [];
   let qlq = false;
 
   tasks.sort(compare)
   for (let index = tasks.length - 1; index >= 0; index--) {
     const task = tasks[index];
-    if (task.release <= instant) {
-      if (!task.hasFinish()) {
+    if (task.release <= instant && !task.hasFinish()) {
         let nextMove = task.getNextAction()
         let iOfnex = inUsedRes.indexOf(nextMove)
         if (iOfnex != -1 && !task.byMe()) {
@@ -87,7 +71,7 @@ function getNextTask(tasks) {
         } else {
           if (!qlq) {
             qlq = true;
-            task.addState(new State(0, 0, RESCOLOS[nextMove]))//COLOR.VERT))
+            task.addState(new State(0, 0, RESOURSECOLOR[nextMove]))//COLOR.VERT))
             if (nextMove != "E") {
               if (iOfnex == -1)
                 inUsedRes.push(nextMove)
@@ -109,13 +93,12 @@ function getNextTask(tasks) {
             }
           }
           else {
-            // if(!task.hasFinish())
             task.addState(new State(0, 0, COLOR.BLANCHE), true)
           }
         }
-
-      }
     }
+
+    
     newTasks.push(task)
 
   }

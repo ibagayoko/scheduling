@@ -1,5 +1,5 @@
 class Task{
-    constructor(name="default", priority=Infinity,seq="", x=0, y=0, release=0){
+    constructor(name="default", priority=Infinity, seq="", x=0, y=0, release=0){
         this.name = name 
         this.priority = priority 
         this.states = []  // de type State
