@@ -7,12 +7,32 @@ class Task{
         this.y = y;
         this.index= 0;
         this.seq = seq;
+        this.curSeq = seq;
         this.release = release
+        this.res = []
     }
-    addState(state){
+
+    hasFinish(){
+        return this.curSeq.length==0
+    }
+    getNextAction(){
+        return this.curSeq[0]
+    }
+    byMe(){
+        return this.res.includes(this.getNextAction())
+    }
+    addState(state, blocked=false){
         state.x = this.x + 50 + (this.release+ this.index)*state.wh;
         state.y = this.y;
         this.states.push(state)
+        if(!blocked){
+            state.name = this.curSeq[0]
+            if(state.name!="E"){
+                if(this.res.indexOf(state.name))
+                    this.res.push(state.name)
+            }
+            this.curSeq = this.curSeq.slice(1)
+        }
         this.index++;
     }
 
