@@ -22,10 +22,15 @@ function compare(a, b) {
 }
 
 let newBtn;
+function saveFile(name){
+
+  save(name); // save a specific canvas with a filename
+}
 
 function setup() {
 
   newBtn = createButton('Nouveau');
+  // newBtn.
   createCanvas(600, 450);
   taksList.push(new Task("d", 4, "EEQVE", 0, Hauteur / 4, 4))
   taksList.push(new Task("c", 3, "EVVE", 0, 2 * Hauteur / 4, 2))
