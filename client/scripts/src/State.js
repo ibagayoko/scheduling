@@ -13,9 +13,9 @@ class State{
 
         
     }
-    showName(){
+    showName(size=24){
         fill(0)
-        let TextSize = 24
+        let TextSize = size
         textSize(TextSize);
         text(`${this.name}`,this.x+(this.wh - TextSize),  this.y-(this.wh-TextSize));
         
