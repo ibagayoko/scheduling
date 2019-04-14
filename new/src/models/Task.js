@@ -2,6 +2,7 @@ export class Task{
     constructor(name="default", priority=Infinity, seq="", x=0, y=0, release=0){
         this.name = name 
         this.priority = priority 
+        this.priority0 = priority 
         this.states = []  // de type State
         this.x = x;
         this.y = y;
@@ -14,6 +15,12 @@ export class Task{
 
     hasFinish(){
         return this.curSeq.length==0
+    }
+    raisePriority(priority){
+        this.priority = priority
+    }
+    defaultPriority(){
+        this.priority = this.priority0
     }
     getNextAction(){
         return this.curSeq[0]

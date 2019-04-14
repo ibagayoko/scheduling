@@ -1,7 +1,4 @@
 require("./app")
-// require("./models")
-
-
 
 const COLOR = {
     ROUGE: "#FF0000",
@@ -18,12 +15,9 @@ const RESOURSECOLOR = {
     "Q": COLOR.JAUNE,
     "V": COLOR.VERTISH
   }
-// var RESOURSECOLOR = require("./constants").RESOURSECOLOR 
 var State = require("./models/State").State
 var Task = require("./models/Task").Task
-// var Task = new require("./models/Task").Task
-
-// export {State,Task, COLOR, RESOURSECOLOR}
+var Resource = require("./models/Resource").Resource
 
 
 let debut;
@@ -114,8 +108,105 @@ function defaultScheduler(tasks) {
       instant++;
   
     return newTasks
+}
+
+function getResources(tasks, str=false){
+  let resList = []  // array<Resource>
+  let addedRes = [] // array<string>
+
+  for (let i = 0; i < tasks.length; i++) {
+    const task = tasks[i];
+    for (let j = 0; j < task.seq.length; j++) {
+      const pres = task.seq[j];
+      let iOfnex = addedRes.indexOf(pres)
+      if(iOfnex==-1){
+        resList.push(new Resource(pres, task.priority))
+        addedRes.push(pres)
+      }
+      else{
+        resList[iOfnex].setPriority(task.priority)
+        // addedRes[iOfnex]
+      }
+
+      
+    }
+
+    resList.sort(compare)
+    if(str) return addedRes
+
+    return resList
+    
   }
-  
+
+
+}
+function ICPPScheduler(tasks) {
+  let newTasks = [];
+  let qlq = false;
+
+  tasks.sort(compare)
+  let resources = getResources(tasks)
+  let resourcesStr = getResources(tasks, true)
+
+  for (let index = tasks.length - 1; index >= 0; index--) {
+    const task = tasks[index];
+    if (task.release <= instant && !task.hasFinish()) {
+        let nextMove = task.getNextAction()
+        let iOfnex = inUsedRes.indexOf(nextMove)
+        if (inUsedRes.length==1 && !task.byMe()) {
+        // if (iOfnex != -1 && !task.byMe()) {
+          task.addState(new State(0, 0, COLOR.ROUGE, "B"), true)
+        } else {
+          if (!qlq) {
+            qlq = true;
+            task.addState(new State(0, 0, RESOURSECOLOR[nextMove]))//COLOR.VERT))
+            if (nextMove != "E") {
+              if (iOfnex == -1){
+                // resourese index to raise task priority
+                let presIndex = resourcesStr.indexOf(nextMove)
+                if(presIndex!=-1)
+                task.raisePriority(resources[presIndex].priority)
+                inUsedRes.push(nextMove)
+              }
+
+              if (task.hasFinish()) {
+
+                iOfnex = inUsedRes.indexOf(nextMove)
+                
+                inUsedRes.splice(iOfnex, 1)
+              } else {
+
+                let newNext = task.getNextAction()
+                if (nextMove != newNext) {
+                  // have to remove res
+                  iOfnex = inUsedRes.indexOf(nextMove)
+                  // resourese index to normal task priority
+                // let presIndex = resourcesStr.indexOf(nextMove)
+                  task.defaultPriority()
+
+                  inUsedRes.splice(iOfnex, 1)
+                }
+              }
+            }
+          }
+          else {
+            task.addState(new State(0, 0, COLOR.BLANCHE), true)
+          }
+        }
+    }
+
+    
+    newTasks.push(task)
+
+  }
+
+
+  if (instant < 50)
+    instant++;
+
+  return newTasks
+}
+
 function _drawFunc(){
     background(255);
     fill(0)
@@ -128,7 +219,9 @@ function _drawFunc(){
       inst.showName(20)
     }
     showTasks(taksList)
-    taksList = defaultScheduler(taksList)
+    taksList = ICPPScheduler(taksList)
+    console.log(instant,taksList)
+    // taksList = defaultScheduler(taksList)
   
   }
 window.addEventListener("start:scheduling", function(e){
@@ -159,6 +252,7 @@ window.draw = function draw() {
     if(itstrue && instant<50){
         mySelectEvent()
         _drawFunc()
+
     }
   
   }
