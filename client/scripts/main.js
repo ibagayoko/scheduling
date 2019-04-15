@@ -129,8 +129,6 @@ function defaultScheduler(tasks) {
           }
         }
     }
-
-    
     newTasks.push(task)
 
   }
@@ -141,11 +139,6 @@ function defaultScheduler(tasks) {
 
   return newTasks
 }
-
-
-
-
-
 
 
 function showTasks(ts) {
