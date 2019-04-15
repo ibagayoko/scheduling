@@ -39,6 +39,17 @@ export class Task{
                     this.res.push(state.name)
             }
             this.curSeq = this.curSeq.slice(1)
+
+            if (this.hasFinish()) {
+                this.res = [] //splice(iOfnex, 1)
+              } 
+              else{
+                let newNext = this.getNextAction()
+                if (state.name != newNext) {
+                    let iOfnex = this.res.indexOf(state.name)
+                    if(iOfnex!=1) this.res.splice(iOfnex, 1)
+                }
+              }
         }
         this.index++;
     }
