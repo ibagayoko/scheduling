@@ -59,18 +59,11 @@ function showTasks(ts) {
 }
 
 function _drawFunc() {
-  background(255);
+  background("255");
   fill(0);
   stroke(0);
   line(50, 0, 50, Hauteur);
-  listeIns.push(
-    new State(
-      50 + instant * 30,
-      Hauteur + 30,
-      COLOR.BLANCHE,
-      instant.toString()
-    )
-  );
+  
   textSize(16);
   for (let i = 0; i < listeIns.length; i++) {
     const inst = listeIns[i];
@@ -112,6 +105,15 @@ window.setup = function setup() {
   // cc = createCanvas(600, Hauteur + 200);
   startMenu = select(".overlay");
   startMenu.addClass("overlay-open");
+for (let i = 0; i < 100; i++) 
+  listeIns.push(
+    new State(
+      50 + i * 30,
+      Hauteur + 30,
+      COLOR.BLANCHE,
+      i.toString()
+    )
+  );
   
 };
 window.draw = function draw() {

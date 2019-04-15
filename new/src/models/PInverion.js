@@ -52,23 +52,23 @@ constructor(tasks, res=[]) {
         tasks.sort(compare);
         for (let index = tasks.length - 1; index >= 0; index--) {
           const task = tasks[index];
-          if (task.release <= this.instant && !task.hasFinish()) {
+          // if (task.release <= this.instant && !task.hasFinish()) {
             
-            let nextMove = task.getNextAction();
-            let iOfnex = this.inUsedRes.indexOf(nextMove);
-            if (iOfnex != -1 && !task.byMe()) {
-              task.addState(new State(0, 0, COLOR.ROUGE, "B"), true);
-            }
-            else if (!qlq) {
-              qlq = true;
+          //   let nextMove = task.getNextAction();
+          //   let iOfnex = this.inUsedRes.indexOf(nextMove);
+          //   if (iOfnex != -1 && !task.byMe()) {
+          //     task.addState(new State(0, 0, COLOR.ROUGE, "B"), true);
+          //   }
+          //   else if (!qlq) {
+          //     qlq = true;
     
-              task.addState(new State(0, 0, RESOURSECOLOR[nextMove])); //COLOR.VERT))
+          //     task.addState(new State(0, 0, RESOURSECOLOR[nextMove])); //COLOR.VERT))
              
-            }
+          //   }
 
 
 
-          }
+          // }
 
           newTasks.push(task);
         }
