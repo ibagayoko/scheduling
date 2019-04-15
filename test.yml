@@ -1,0 +1,19 @@
+---
+
+resources:
+  - A
+  - C
+  - D
+  - Q
+  - V
+tasks:
+  - {name: a, priority: 1, seq: EQQQQE, release: 0}
+  - {name: b, priority: 2, seq: EE, release: 2}
+  - {name: c, priority: 3, seq: EVVE, release: 2}
+  - {name: d, priority: 4, seq: EEQVE, release: 4}
+
+
+
+
+
+...

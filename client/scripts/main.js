@@ -6,7 +6,7 @@ let d = { 'priority': 4, 'rtime': 0, 'exseq': "EVQVE" }
 // La liste des taches
 let taksList = [];
 
-
+var app ;
 
 let inUsedRes = [];
 let instant = 0;
@@ -21,16 +21,43 @@ function compare(a, b) {
   return 0;
 }
 
-let newBtn;
-function saveFile(name){
-
+let newBtn, saveBtn;
+let debut ;
+function saveFile(){
+  let name = prompt("Entrer un nom de fichier avec l'extention (ex : name.jpg)")
+  if (name == null || name == "") {}
+  else
   save(name); // save a specific canvas with a filename
 }
 
+
+
 function setup() {
+  // var imported = document.createElement('script');
+  // imported.src = "/client/scripts/src/components/Task.js";
+  // document.head.appendChild(imported);
+
+  // document.writeln("<script type='text/javascript' src='./src/components/Task.js'></script>");
+  // Vue.component("TaskList", )
+  new Vue({ 
+    el: '#app',
+    
+    data: {
+        message: 'Hello Vue!'
+    }
+  });
 
   newBtn = createButton('Nouveau');
+  saveBtn= createButton("Save Image")
+
+  saveBtn.mousePressed(saveFile)
+  debut = select(".overlay");
+  debut.addClass("overlay-open")
+  // save.position(400, 65);
+
+
   // newBtn.
+  
   createCanvas(600, 450);
   taksList.push(new Task("d", 4, "EEQVE", 0, Hauteur / 4, 4))
   taksList.push(new Task("c", 3, "EVVE", 0, 2 * Hauteur / 4, 2))
