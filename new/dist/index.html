@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Scheduling </title>
+
+        <link rel="stylesheet" href="main.css">
+    </head>
+    
+    <body>
+        <div id="app">
+                <page inline-template>
+
+                    <div class="overlay overlay-data">
+                        <file-reader></file-reader>
+                        <button v-on:click="handle" class="button">Dispache</button>
+                        <div class="wrapper">
+                            <div class="left-col">
+                                <task-list :resources="this.resources" v-model="tasks"></task-list>
+                            </div>
+                            <div class="right-col">
+                                <resources v-model="resources"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </page>
+        
+        <select id="selecScheme" style="position: absolute; left: 10px; top: 10px;"><option value="default">default</option><option value="ICPP">ICPP</option><option value="OCPP">OCPP</option></select>
+
+
+
+
+
+           
+                
+                <script src="p5/p5.js"></script>
+                <script src="p5/addons/p5.dom.min.js"></script>
+                <script src="main.js"></script>
+            </body>
+            
+            </html>

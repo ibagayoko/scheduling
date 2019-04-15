@@ -1,4 +1,4 @@
-function compare(a, b) {
+export function compare(a, b) {
     if (a.priority < b.priority) return -1;
     if (a.priority > b.priority) return 1;
     return 0;
@@ -12,6 +12,7 @@ var COLOR = require("./constants").COLOR;
 export class ICPP{
 constructor(tasks, res=[]) {
     this.tasks = tasks;
+    console.log(tasks)
 
     this.inUsedRes = [];
     this.instant = 0;
