@@ -9,6 +9,7 @@ var Task = require("./models/Task").Task;
 // Scheduling algorithm
 var ICPP = require("./models/ICPP").ICPP;
 var Default = require("./models/Default").Default;
+var PInversion = require("./models/PInverion").PInversion;
 
 var compare = require("./models/ICPP").compare;
 
@@ -20,6 +21,8 @@ let taksList = [];
 // Icpp tasks liste
 let icppTaskList = []
 
+let pInversiontaksList = []
+
 let Hauteur = 400;
 
 let instant = 0;
@@ -29,7 +32,7 @@ let listeIns = [];
 let itstrue = false;
 
 // sheduling scheme
-let icpp , defaut;
+let icpp , defaut, pInversion;
 
 
 let newBtn, saveBtn;
@@ -84,6 +87,13 @@ else if(item=="default"){
       taksList = defaut.defaultScheduler(taksList);
       showTasks(taksList);
   }
+else if(item="PInversion"){
+  pInversiontaksList = pInversion.PInversionScheduler(pInversiontaksList);
+      showTasks(pInversiontaksList);
+}
+else{
+  showTasks([])
+}
 }
 // textAlign(CENTER);
 text(item + " scheduleur!",50+ width/2, height -10);
@@ -111,7 +121,7 @@ function mySelectEvent(e) {
   console.log("sel", item);
   instant = 0
   
-  // console.log(icpp.tasks)
+  console.log(pInversiontaksList)
 }
 
 
@@ -146,12 +156,24 @@ window.addEventListener("start:scheduling", function(e) {
       )
 
     );
+    pInversiontaksList.push(
+      new Task(
+        task.name,
+        task.priority,
+        task.seq,
+        0,
+        ((index + 1) * Hauteur) / e.tasks.length - 1,
+        task.release
+      )
+
+    );
 
   });
   // icppTaskList = taksList.slice(0)
   itstrue = true;
   icpp = new ICPP(icppTaskList)
   defaut = new Default(taksList)
+  pInversion = new PInversion(pInversiontaksList)
   startMenu.removeClass("overlay-open");
 
 

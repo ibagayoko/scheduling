@@ -17,6 +17,7 @@ export class Task{
         return this.curSeq.length==0
     }
     raisePriority(priority){
+        if(priority>this.priority)
         this.priority = priority
     }
     defaultPriority(){
@@ -25,8 +26,9 @@ export class Task{
     getNextAction(){
         return this.curSeq[0]
     }
-    byMe(){
-        return this.res.includes(this.getNextAction())
+    byMe(resource=null){
+        if(!resource) resource =  this.getNextAction()
+        return this.res.includes(resource)
     }
     addState(state, blocked=false){
         state.x = this.x + 50 + (this.release+ this.index)*state.wh;

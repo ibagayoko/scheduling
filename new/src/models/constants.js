@@ -4,10 +4,12 @@ export const COLOR = {
     VERTISH: "#00DD00",
     VERT: "#54ffba",
     JAUNE: "#fff654",
-    BLANCHE: "#FFFFFF"
+    BLANCHE: "#FFFFFF",
+    TALE: "#F05599"
   };
 export const RESOURSECOLOR = {
     "E": COLOR.VERT,
     "Q": COLOR.JAUNE,
-    "V": COLOR.VERTISH
+    "I": COLOR.VERTISH,
+    "V": COLOR.TALE
   }

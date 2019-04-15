@@ -62,7 +62,8 @@ constructor(tasks, res=[]) {
               // if (iOfnex != -1 && !task.byMe()) {
               if (inExTask && task.priority0 < inExTask.priority0)
                 task.addState(new State(0, 0, COLOR.BLANCHE), true);
-              else task.addState(new State(0, 0, COLOR.ROUGE, "B"), true);
+              else 
+                task.addState(new State(0, 0, COLOR.ROUGE, "B"), true);
             } else {
               if (!qlq) {
                 qlq = true;
