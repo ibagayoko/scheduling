@@ -9,7 +9,6 @@ var Task = require("./models/Task").Task;
 // Scheduling algorithm
 var ICPP = require("./models/ICPP").ICPP;
 var Default = require("./models/Default").Default;
-var PInversion = require("./models/PInverion").PInversion;
 var OCPP = require("./models/OCPP").OCPP;
 
 var compare = require("./models/ICPP").compare;
@@ -23,7 +22,6 @@ let taksList = [];
 let icppTaskList = []
 let ocppTaskList = []
 
-let pInversiontaksList = []
 
 let Hauteur = 400;
 
@@ -34,10 +32,10 @@ let listeIns = [];
 let itstrue = false;
 
 // sheduling scheme
-let icpp , defaut, pInversion, ocpp;
+let icpp, defaut, ocpp;
 
 
-let newBtn, saveBtn;
+let saveBtn;
 
 // Select scheme
 let sel;
@@ -63,40 +61,30 @@ function _drawFunc() {
   fill(0);
   stroke(0);
   line(50, 0, 50, Hauteur);
-  
+
   textSize(16);
   for (let i = 0; i < listeIns.length; i++) {
     const inst = listeIns[i];
     inst.showName(20);
   }
-  
-  // console.log(instant, taksList);
-  // taksList = icpp.ICPPScheduler(taksList)
-  // taksList = defaut.defaultScheduler(taksList);
-if(itstrue){
-  if(item=="ICPP"){
-    icppTaskList = icpp.ICPPScheduler(icppTaskList)
+
+  if (itstrue) {
+    if (item == "ICPP") {
+      icppTaskList = icpp.ICPPScheduler(icppTaskList)
       showTasks(icppTaskList);
-}
-else if(item=="OCPP"){
-  ocppTaskList = ocpp.OCPPScheduler(ocppTaskList)
-    showTasks(ocppTaskList);
-}
-else if(item=="default"){
+    }
+    else if (item == "OCPP") {
+      ocppTaskList = ocpp.OCPPScheduler(ocppTaskList)
+      showTasks(ocppTaskList);
+    }
+    else if (item == "default") {
       taksList = defaut.defaultScheduler(taksList);
       showTasks(taksList);
+    }
   }
-else if(item="PInversion"){
-  pInversiontaksList = pInversion.PInversionScheduler(pInversiontaksList);
-      showTasks(pInversiontaksList);
-}
-else{
-  showTasks([])
-}
-}
-// textAlign(CENTER);
-text(item + " scheduleur!",50+ width/2, height -10);
-// textAlign(CENTER);
+  // textAlign(CENTER);
+  text(item + " scheduleur!", 50 + width / 2, height - 10);
+  // textAlign(CENTER);
 }
 let cns, cc;
 window.setup = function setup() {
@@ -105,16 +93,16 @@ window.setup = function setup() {
   // cc = createCanvas(600, Hauteur + 200);
   startMenu = select(".overlay");
   startMenu.addClass("overlay-open");
-for (let i = 0; i < 100; i++) 
-  listeIns.push(
-    new State(
-      50 + i * 30,
-      Hauteur + 30,
-      COLOR.BLANCHE,
-      i.toString()
-    )
-  );
-  
+  for (let i = 0; i < 100; i++)
+    listeIns.push(
+      new State(
+        50 + i * 30,
+        Hauteur + 30,
+        COLOR.BLANCHE,
+        i.toString()
+      )
+    );
+
 };
 window.draw = function draw() {
   if (itstrue) {
@@ -124,18 +112,17 @@ window.draw = function draw() {
 };
 var item
 function myProtocolHasChange(e) {
-  
-   item = e.target.value //sel.value();
+
+  item = e.target.value //sel.value();
   console.log("sel", item);
   instant = 0
-  
-  console.log(pInversiontaksList)
+
 }
 
 
 
 
-window.addEventListener("start:scheduling", function(e) {
+window.addEventListener("start:scheduling", function (e) {
   // console.log(e)
   e.tasks.sort(compare).reverse();
   taksList = [];
@@ -151,7 +138,7 @@ window.addEventListener("start:scheduling", function(e) {
       )
 
     );
-    
+
 
     icppTaskList.push(
       new Task(
@@ -176,17 +163,6 @@ window.addEventListener("start:scheduling", function(e) {
       )
 
     );
-    pInversiontaksList.push(
-      new Task(
-        task.name,
-        task.priority,
-        task.seq,
-        0,
-        ((index + 1) * Hauteur) / e.tasks.length - 1,
-        task.release
-      )
-
-    );
 
   });
   // icppTaskList = taksList.slice(0)
@@ -194,7 +170,6 @@ window.addEventListener("start:scheduling", function(e) {
   icpp = new ICPP(icppTaskList)
   ocpp = new OCPP(ocppTaskList)
   defaut = new Default(taksList)
-  pInversion = new PInversion(pInversiontaksList)
 
   // On cache le menu
   startMenu.removeClass("overlay-open");
@@ -202,7 +177,7 @@ window.addEventListener("start:scheduling", function(e) {
   // Ajoute la posibilte de pouvoir sauvegarder les resultats
   saveBtn = select("#saveBtn");
   saveBtn.mousePressed(saveFile)
-  
+
   sel = document.querySelector("#selecScheme")
   sel.addEventListener("change", myProtocolHasChange)
 
