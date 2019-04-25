@@ -1,3 +1,6 @@
+/**
+ * La constante couleur a des couleur predefinies
+ */
 export const COLOR = {
     ROUGE: "#FF0000",
     NOIR: "#222222",
@@ -7,6 +10,13 @@ export const COLOR = {
     BLANCHE: "#FFFFFF",
     TALE: "#F05599"
   };
+
+/**
+ * RESOURSECOLOR nous donne des couleur predefinies associee au ressource
+ * 
+ * 
+ * TODO : Laiser l'utilisateur choisir une couleur 
+ */
 export const RESOURSECOLOR = {
     "E": COLOR.VERT,
     "Q": COLOR.JAUNE,
@@ -15,7 +25,6 @@ export const RESOURSECOLOR = {
     "A":"#531CB3",
     "C":"#7149EE",
     "D":"#B054FF1",
-    // "E":"#ED4FEF",
     "F":"#ED49AB",
     "G":"#ED4FEF",
     "H":"#B754FF",
@@ -31,8 +40,8 @@ export const RESOURSECOLOR = {
     "T":COLOR.BLANCHE,
     "U":COLOR.BLANCHE,
     "W":COLOR.BLANCHE,
-    // "Q":COLOR.BLANCHE,
     "Z":COLOR.BLANCHE,
-    // "V":COLOR.BLANCHE,
 
   }
+
+  
