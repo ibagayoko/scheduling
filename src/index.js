@@ -118,12 +118,12 @@ for (let i = 0; i < 100; i++)
 };
 window.draw = function draw() {
   if (itstrue) {
-    // mySelectEvent()
+    // myProtocolHasChange()
     _drawFunc();
   }
 };
 var item
-function mySelectEvent(e) {
+function myProtocolHasChange(e) {
   
    item = e.target.value //sel.value();
   console.log("sel", item);
@@ -195,20 +195,15 @@ window.addEventListener("start:scheduling", function(e) {
   ocpp = new OCPP(ocppTaskList)
   defaut = new Default(taksList)
   pInversion = new PInversion(pInversiontaksList)
+
+  // On cache le menu
   startMenu.removeClass("overlay-open");
 
-
-  saveBtn = createButton("Save as Img");
-  saveBtn.position(window.innerWidth-100)
+  // Ajoute la posibilte de pouvoir sauvegarder les resultats
+  saveBtn = select("#saveBtn");
   saveBtn.mousePressed(saveFile)
   
   sel = document.querySelector("#selecScheme")
-  sel.addEventListener("change", mySelectEvent)
+  sel.addEventListener("change", myProtocolHasChange)
 
-  // sel = createSelect();
-  // sel.position(10, 10);
-  // sel.option("default");
-  // sel.option("ICPP");
-  // sel.option("OCPP");
-  // sel.changed(mySelectEvent);
 });

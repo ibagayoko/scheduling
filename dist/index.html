@@ -1,51 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Scheduling </title>
+    <title>Scheduling </title>
 
-        <link rel="stylesheet" href="main.css">
-    </head>
+    <link rel="stylesheet" href="main.css">
     
-    <body>
-        <div id="app">
-                <page inline-template>
+</head>
 
-                    <div class="overlay overlay-data">
-                        <file-reader></file-reader>
-                        <button v-on:click="handle" class="button">Dispache</button>
-                        <div class="wrapper">
-                            <div class="left-col">
-                                <task-list :resources="this.resources" v-model="tasks"></task-list>
-                            </div>
-                            <div class="right-col">
-                                <resources v-model="resources"/>
-                            </div>
+<body>
+    <div id="app">
+        <page inline-template style="z-index: 10;">
+            <div class="overlay overlay-data">
+                <div class="wrapper">
+                    <div class="left-col">
+                        <button v-on:click="handle" class="button">Schedule Tasks</button>
+                        <task-list :resources="this.resources" v-model="tasks"></task-list>
+                        <div style="position: absolute; right: 50%;; bottom: 10px;">
+                                <h1>Or</h1>
+                                <label tabindex="0" for="file" style="font-size: 48px">Select a file...</label>
+                                <file-reader></file-reader>
                         </div>
+                    </div>
+                    <div class="right-col">
+                        <resources v-model="resources" />
                     </div>
                 </div>
             </div>
         </page>
-        
-        <select id="selecScheme" style="position: absolute; left: 10px; top: 10px;">
-            <option selected="selected" value="default">default</option>
-            <option value="ICPP">ICPP</option>
-            <option value="OCPP">OCPP</option>
-            <option value="PInversion">PInversion</option>
-        </select>
+        <div style="position: absolute; left: 10px; top: 10px;;">
+                <h3>Select a protocol</h3>
+                <select id="selecScheme"  value="default">
+                    <option value="default">default</option>
+                    <option value="ICPP">ICPP</option>
+                    <option value="OCPP">OCPP</option>
+                </select>
+            </div>
+        </div>
+        <div style="position: absolute; right: 0; z-index:1">
+            <h2>Click on bellow button to save</h2>
+            <button id="saveBtn">Click Me!</button>
+        </div>
+</div>
 
 
 
 
 
-           
-                
-                <script src="p5/p5.js"></script>
-                <script src="p5/addons/p5.dom.min.js"></script>
-                <script src="main.js"></script>
-            </body>
-            
-            </html>
+
+
+    <script src="p5/p5.js"></script>
+    <script src="p5/addons/p5.dom.min.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

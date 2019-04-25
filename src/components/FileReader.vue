@@ -1,7 +1,7 @@
 <template>
     <div class="input-file-container">  
     <input  class="input-file" v-on:change="handleChange" type="file" name="file" id="file">
-    <label tabindex="0" for="file" class="input-file-trigger">Select a file...</label>
+    
   </div>
 </template>
 <script>
