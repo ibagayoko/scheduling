@@ -1,8 +1,7 @@
 <template>
     <div class="input-file-container">  
-    <input  class="input-file" v-on:change="handleChange" type="file" name="file" id="file">
-    
-  </div>
+        <input  class="input-file" v-on:change="handleChange" type="file" name="file" id="file">
+    </div>
 </template>
 <script>
 
@@ -11,8 +10,6 @@ import YAML from "yaml";
 export default {
     
     props:["value"],
-
-// https://codepen.io/silkine/pen/pPxJOX
     data() {
         return {}
     },
@@ -39,13 +36,5 @@ export default {
         },
       
     },
-
-    mounted() {
-    }
-  
   }
 </script>
-
-<style>
-
-</style>

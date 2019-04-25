@@ -2,6 +2,8 @@
 <div style="height:100vh;overflow-y: scroll;overflow-x: hidden;">
     <div class="row">
   <p>Ajoute des taches avec des ressoure</p>
+  <P>E pour execution normal</P>
+  <p>Pour utiliser une ressource, elle doit etre ajouter a la liste a droite &#x27A1;</p>
 </div>
 
 <div class="row">
@@ -13,7 +15,7 @@
     <input v-bind:class="[classname]"  type="text" v-on:input="handleKeypress" v-model="curItem.seq" placeholder="Seq" /><label>Seq</label>
   </span>
   <span>
-    <input v-bind:class="[classname]" type="number" v-model="curItem.release" placeholder="Release" /><label>Release</label>
+    <input v-bind:class="[classname]" type="number" min="0" v-model="curItem.release" placeholder="Release" /><label>Release</label>
   </span>
   <span>
     <input v-bind:class="[classname]" type="number" min="1" v-model="curItem.priority" placeholder="Priority" /><label>Priority</label>
@@ -114,6 +116,5 @@
         created: function () {
             window.addEventListener('file:loaded', this.fileloaded)
         },
-
     }
 </script>

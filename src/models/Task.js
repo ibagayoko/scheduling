@@ -71,7 +71,7 @@ export class Task{
      * @param {boolean} blocked Est ce que l'etat est bloquant ou non
      */
     addState(state, blocked=false){
-        state.x = this.x + 50 + (this.release+ this.index)*state.wh;
+        state.x = this.x + 100 + (this.release+ this.index)*state.wh;
         state.y = this.y;
         this.states.push(state)
         if(!blocked){
@@ -105,7 +105,7 @@ export class Task{
         this.showNameAndPriority();
         
         // Draw a line
-        line(50, this.y, width, this.y);
+        line(100, this.y, width, this.y);
 
         // show a liste of state for this task
         this.states.forEach(state => {

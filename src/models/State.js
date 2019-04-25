@@ -14,7 +14,7 @@ export class State {
         this.y=y
         this.color=color
         this.name=name
-        this.wh = 30
+        this.wh = 20
     }
     /**
      * Affiche l'etat avec la couleur et a la position specifiée
@@ -28,7 +28,7 @@ export class State {
      * 
      * @param {int} size La taile de polie pour ecrire le nom de l'etat
      */
-    showName(size=24){
+    showName(size=16){
         fill(0)
         let TextSize = size
         textSize(TextSize);

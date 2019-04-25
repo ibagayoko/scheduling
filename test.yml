@@ -11,6 +11,9 @@ tasks:
   - {name: b, priority: 2, seq: EE, release: 2}
   - {name: c, priority: 3, seq: EVVE, release: 2}
   - {name: d, priority: 4, seq: EEQVE, release: 4}
+  - {name: k, priority: 4, seq: EEQVE, release: 4}
+  - {name: aj, priority: 5, seq: EEQVE, release: 4}
+  - {name: ah, priority: 7, seq: EEQVE, release: 4}
   # - {name: i, priority: 5, seq: EEIIE, release: 5}
 
 
