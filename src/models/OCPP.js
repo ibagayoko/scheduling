@@ -94,7 +94,7 @@ constructor(tasks, res=[]) {
         
                         iOfnex = this.inUsedRes.indexOf(nextMove)
                         this.inUsedRes.splice(iOfnex, 1)
-                        wait = 0
+                        // wait = 0
                         pri = false
       
                       } else {

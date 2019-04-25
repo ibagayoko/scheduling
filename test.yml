@@ -4,19 +4,16 @@ resources:
   - A
   - C
   - D
+  - I
   - Q
   - V
 tasks:
-  - {name: a, priority: 1, seq: EQQQQE, release: 0}
-  - {name: b, priority: 2, seq: EE, release: 2}
-  - {name: c, priority: 3, seq: EVVE, release: 2}
-  - {name: d, priority: 4, seq: EEQVE, release: 4}
-  - {name: k, priority: 4, seq: EEQVE, release: 4}
-  - {name: aj, priority: 5, seq: EEQVE, release: 4}
-  - {name: ah, priority: 7, seq: EEQVE, release: 4}
+  # chaque taches doit avoir un nom, priorite, seq, release time
+  - {name: a, priority: 1, seq: EQQQQEVQE, release: 0}
+  - {name: b, priority: 2, seq: EEVQ, release: 2}
+  - {name: c, priority: 3, seq: EVVEEEQQE, release: 2}
+  - {name: d, priority: 4, seq: EEQVEEEQV, release: 4}
   # - {name: i, priority: 5, seq: EEIIE, release: 5}
-
-
 
 
 
